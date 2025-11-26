@@ -6,9 +6,31 @@ spring:
   cloud:
     config:
       enabled: false
+
 server:
-  error:
-    include-message: ALWAYS
-    include-binding-errors: ALWAYS
-    include-stacktrace: ON_PARAM
-    include-exception: false
+  # Render setzt automatisch die PORT-Umgebungsvariable
+  port: ${PORT:2333}  # nutzt PORT von Render, default 2333
+  address: 0.0.0.0    # wichtig, sonst bindet Lavalink nur localhost
+
+lavalink:
+  server:
+    password: "yoursecretpassword"  # hier dein Lavalink Passwort
+    sources:
+      youtube: true
+      bandcamp: true
+      soundcloud: true
+      twitch: true
+      vimeo: true
+      mixer: true
+      http: true
+      local: false
+    bufferDurationMs: 400
+    youtubePlaylistLoadLimit: 6
+    playerUpdateInterval: 5
+    youtubeSearchEnabled: true
+    lastfmEnabled: false
+    gc-warnings: false
+
+metrics:
+  prometheus:
+    enabled: false
